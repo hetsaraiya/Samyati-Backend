@@ -118,7 +118,7 @@ class CoinsData(models.Model):
         return f"{self.user.name}'s Coin Data"
     
 class PrivacyPolicy(models.Model):
-    content = models.TextField(max_length=500, default="")
+    content = models.TextField(default="")
     title = models.CharField(max_length=20, default="Privacy Policy")
 
     def __str__(self) -> str:
