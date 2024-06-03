@@ -188,3 +188,17 @@ def getFriends(request):
             continue
     data.append({"refer" : request.user.referral_code})
     return Response(data)
+
+def getPrivacyPolicy(request):
+    user = request.user
+    if user is not None:
+        p = PrivacyPolicy.objects.get(title="Privacy Policy")
+        resp = {
+            "content" : p.content
+        }
+        return Response(resp)
+    else:
+        resp = {
+            "content" : "Invalid User Credentials"
+        }
+        return Response(resp)
