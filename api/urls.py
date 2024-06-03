@@ -12,4 +12,5 @@ urlpatterns = [
     path("challenge", ChallengeView.as_view(), name='challenge'),
     path("getUserDetails", getUserDetails, name='getUserDetails'),
     path("getFriends", getFriends, name='getFriends'),
+    path("getPrivacyPolicy", getPrivacyPolicy, name='getPrivacyPolicy'),
 ]
