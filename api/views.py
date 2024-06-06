@@ -189,16 +189,33 @@ def getFriends(request):
     data.append({"refer" : request.user.referral_code})
     return Response(data)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getPrivacyPolicy(request):
-    user = request.user
-    if user is not None:
-        p = PrivacyPolicy.objects.get(title="Privacy Policy")
-        resp = {
-            "content" : p.content
-        }
-        return Response(resp)
+    if request.method == "GET":
+        tit = request.GET.get('title')
+        user = request.user
+        if user is not None:
+            p = PrivacyPolicy.objects.get(title=tit)
+            resp = {
+                "content" : p.content
+            }
+            return Response(resp)
+        else:
+            resp = {
+                "content" : "Invalid User Credentials"
+            }
+            return Response(resp)
     else:
-        resp = {
-            "content" : "Invalid User Credentials"
-        }
-        return Response(resp)
+        return Response({"content" : "Method Not Allowed"})
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getCoins(request):
+    user = request.user
+    coins = CoinsData.objects.get(user=user)
+    resp = {
+        "coins" : coins.earned_today
+    }
+    return Response(resp)

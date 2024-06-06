@@ -13,4 +13,5 @@ urlpatterns = [
     path("getUserDetails", getUserDetails, name='getUserDetails'),
     path("getFriends", getFriends, name='getFriends'),
     path("getPrivacyPolicy", getPrivacyPolicy, name='getPrivacyPolicy'),
+    path("getCoins", getCoins, name='getCoins'),
 ]
