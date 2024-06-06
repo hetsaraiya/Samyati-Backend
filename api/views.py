@@ -142,10 +142,14 @@ def healthData(request):
         health_data.save()
 
         # Update or create CoinsData object
+        earned_today = int(int(steps) / 1000)
+
+        # Update or create CoinsData object
         coins_data, _ = CoinsData.objects.update_or_create(
             user=user,
-            defaults={'earned_today': int(int(steps) / 1000)}
+            defaults={'earned_today': earned_today}
         )
+
 
         # Return response
         if created:
