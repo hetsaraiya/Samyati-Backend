@@ -223,3 +223,8 @@ def getCoins(request):
         "coins" : coins.earned_today
     }
     return Response(resp)
+
+
+@api_view(['GET'])
+def PagePrivacyPolicy(request):
+    return render("index.html")
