@@ -27,7 +27,6 @@ SECRET_KEY = "django-insecure-r#^6&ixk8e&u5n%vb2cr51a8=qz%e(4&er9vo%%77u29=1ufdd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-WHITENOISE_USE_FINDERS = True
 ALLOWED_HOSTS = ["*"]
 
 
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     "api",
     "rest_framework",
     "rest_framework_simplejwt",
+    'whitenoise',
 ]
 
 
@@ -146,10 +146,11 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=36500),
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/workspaces/Samyati-Backend/media'
